@@ -1,0 +1,67 @@
+﻿@page "/gridpage"
+@using Blazor8Server20240807.Components.Controls
+@using Blazor8Server20240807.Models
+
+<h3>GridPage</h3>
+
+<div>
+    <EditForm Model="loginRequest" OnValidSubmit="AddAccount" FormName="MyAccountForm">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <label>UserName:</label>
+        <InputText class="form-control" @bind-Value="loginRequest.Username" />
+        <ValidationMessage For="@(() => loginRequest.Username)" />
+
+        <label>Password:</label>
+        <InputText class="form-control" @bind-Value="loginRequest.Password" type="password"/>
+        <ValidationMessage For="@(() => loginRequest.Password)" />
+
+        <label>EMail:</label>
+        <InputText class="form-control" @bind-Value="loginRequest.EMail" />
+        <ValidationMessage For="@(() => loginRequest.EMail)" />
+
+        <button type="submit" class="btn btn-primary" @onclick="AddAccount">新增</button>
+    </EditForm>
+</div>
+
+<GridView DataSource="DataSource">
+    <Columns ColumnName="使用者名稱"></Columns>
+    <Columns ColumnName="使用者密碼"></Columns>
+    <Columns ColumnName="電子信箱"></Columns>
+</GridView>
+
+@code {
+    [SupplyParameterFromForm]
+    public LoginRequest loginRequest { get; set; } = new LoginRequest();
+
+    public static List<object> AccountDataSource = new List<object>()
+    {
+        new LoginRequest() { Username = "Gelis", EMail = "gelis@test.com" },
+        new LoginRequest() { Username = "Allan", EMail = "allan@test.com" },
+        new LoginRequest() { Username = "Mary", EMail = "mary@test.com" }
+    };
+
+    public List<object> DataSource { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        DataSource = await Task.FromResult(AccountDataSource);
+    }
+
+    async Task AddAccount()
+    {
+        LoginRequest account = new LoginRequest()
+        {
+            Username = loginRequest.Username,
+            EMail = loginRequest.EMail
+        };
+
+        AccountDataSource.Add(account);
+
+        DataSource = await Task.FromResult(AccountDataSource);
+
+        // string userName = loginRequest.Username;
+        // string email = loginRequest.EMail;
+    }
+}

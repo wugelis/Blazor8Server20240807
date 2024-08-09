@@ -1,0 +1,31 @@
+﻿@page "/counter"
+@using Blazor8Server20240807.Models
+@* @rendermode InteractiveServer*@
+@inject CounterModel counterModel
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @counterModel.CurrentCounter</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    // private int currentCount = 0;
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+
+    private void IncrementCount()
+    {
+        counterModel.CurrentCounter++;
+    }
+
+    // protected override bool ShouldRender()
+    // {
+    //     return false;
+    // }
+}
