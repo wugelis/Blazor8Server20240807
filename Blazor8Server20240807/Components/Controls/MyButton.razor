@@ -1,20 +1,2 @@
 ﻿@using System.Diagnostics
 <button class="btn btn-primary" @onclick="ChangeCount">@ButtonText</button>
-
-@code {
-    int count = 0;
-    [Parameter] public string? ButtonText { get; set; }
-
-    private string _buttonText = "我是按鈕";
-
-    async Task ChangeCount()
-    {
-        count++;
-
-        ButtonText = _buttonText;
-
-        string text = $"{ButtonText} {count}";
-
-        ButtonText = await Task.FromResult(text);
-    }
-}
