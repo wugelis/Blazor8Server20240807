@@ -1,6 +1,9 @@
 ﻿@page "/gridpage"
+@using Application.Accounts
+@using Application.Accounts.Models
 @using Blazor8Server20240807.Components.Controls
 @using Blazor8Server20240807.Models
+@inject AccountService accountService
 
 <h3>GridPage</h3>
 
@@ -35,18 +38,19 @@
     [SupplyParameterFromForm]
     public LoginRequest loginRequest { get; set; } = new LoginRequest();
 
-    public static List<object> AccountDataSource = new List<object>()
-    {
-        new LoginRequest() { Username = "Gelis", EMail = "gelis@test.com" },
-        new LoginRequest() { Username = "Allan", EMail = "allan@test.com" },
-        new LoginRequest() { Username = "Mary", EMail = "mary@test.com" }
-    };
-
-    public List<object> DataSource { get; set; }
+    public IEnumerable<object>? DataSource { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
-        DataSource = await Task.FromResult(AccountDataSource);
+        var result = from o in accountService.GetAccounts()
+        select new LoginRequest()
+        {
+            Username = o.Username,
+            Password = o.Password,
+            EMail = o.EMail
+        };
+
+        DataSource = await Task.FromResult(result);
     }
 
     async Task AddAccount()
@@ -57,11 +61,6 @@
             EMail = loginRequest.EMail
         };
 
-        AccountDataSource.Add(account);
-
-        DataSource = await Task.FromResult(AccountDataSource);
-
-        // string userName = loginRequest.Username;
-        // string email = loginRequest.EMail;
+        accountService.AddAccount(account);
     }
 }

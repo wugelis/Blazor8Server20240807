@@ -1,5 +1,7 @@
+using Application.Accounts;
 using Blazor8Server20240807.Components;
 using Blazor8Server20240807.Models;
+using Infrastructure.Accounts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddSingleton<CounterModel>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<AccountService>();
 
 var app = builder.Build();
 

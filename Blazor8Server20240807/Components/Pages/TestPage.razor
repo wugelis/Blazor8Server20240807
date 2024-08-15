@@ -5,15 +5,50 @@
 <h3>TestPage</h3>
 
 <div>
-
+    <MyButton ButtonText="我是按鈕btn1" ButtonNum="btn1"></MyButton>
+    <MyButton ButtonText="我是按鈕btn2" ButtonNum="btn2"></MyButton>
+    <MyButton ButtonText="我是按鈕btn3" ButtonNum="btn3"></MyButton>
+    <MyButton ButtonText="我是按鈕btn4" ButtonNum="btn4"></MyButton>
 </div>
-<MyButton ButtonText="我是按鈕" ButtonNum="btn1"></MyButton>
-<MyButton ButtonText="我是按鈕" ButtonNum="btn2"></MyButton>
-<MyButton ButtonText="我是按鈕" ButtonNum="btn3"></MyButton>
-<MyButton ButtonText="我是按鈕" ButtonNum="btn4"></MyButton>
 
-<MyButton3 ButtonText="我是另一個按鈕"></MyButton3>
+<div>
+    <MyButton3 ButtonText="我是另一個按鈕"></MyButton3>
+</div>
+
+<div>
+    <MySelect DataSource="DataSource" proprtyName="ModelName" OnSelectChange="GetSelectValue"></MySelect>
+    <p>
+        您選擇的是：@selectValue
+    </p>
+</div>
 
 @code {
+    private string? selectValue;
+    async Task GetSelectValue(string selectedValue)
+    {
+        selectValue = await Task.FromResult(selectedValue);
+    }
+    public List<object> DataSource { get; set; }
 
+    public static List<object> Cars = new List<object>
+    (
+        new Car[]
+        {
+            new Car() { ModelID = "[None]", ModelName = "(請選擇)"},
+            new Car() { ModelID = "TOYOTA", ModelName = "頭又大"},
+            new Car() { ModelID = "NISSAN", ModelName = "你上"},
+            new Car() { ModelID = "LESUX", ModelName = "雷射是"}
+        }
+    );
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        DataSource = await Task.FromResult(Cars);
+    }
+    class Car
+    {
+        public string? ModelID { get; set; }
+        public string? ModelName { get; set; }
+    }
 }

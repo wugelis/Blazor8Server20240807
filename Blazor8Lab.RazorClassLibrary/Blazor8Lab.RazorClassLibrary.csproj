@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>8.0.0</Version>
+    <Authors>Gelis</Authors>
+    <Description>Blazor Lab 測試用</Description>
+    <Copyright>Gelis</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="BlazorControls\MyButton.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="BlazorControls\MyButton.razor" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.2" />
+  </ItemGroup>
+
+</Project>

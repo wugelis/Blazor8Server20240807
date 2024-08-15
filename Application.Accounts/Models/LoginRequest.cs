@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Blazor8Server20240807.Models
+namespace Application.Accounts.Models
 {
     /// <summary>
     /// 登入請求定義
