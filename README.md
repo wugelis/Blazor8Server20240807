@@ -1,6 +1,6 @@
-# ผfญpณก - Blazor ฅัฒLคJฒ`จtฆCฝาต{ - Day 1 ฝdจาต{ฆกฝX
+# Blazor ็”ฑๆทบๅ…ฅๆทฑ็ณปๅ—่ชฒ็จ - Day 1 ็ฏไพ็จๅผ็ขผ
 
-(1). MyButton1 ชบ Blazor Components ฝdจาต{ฆก 
-(2). GridView & Columns ฝdจาต{ฆก 
-(3). EditForm ชํณๆฝdจาต{ฆก 
-(4). ทfฐtคWค่ชบ EditForm ชํณๆกAน๊ง@ฐสบAทsผWชบฝdจา 
+(1). MyButton1 ็ Blazor Components ็ฏไพ็จๅผ 
+(2). GridView & Columns ็ฏไพ็จๅผ 
+(3). EditForm ่กจๅ–ฎ็ฏไพ็จๅผ 
+(4). ๆญ้…ไธๆ–น็ EditForm ่กจๅ–ฎ๏ผๅฏฆไฝๅ•ๆ…ๆ–ฐๅข็็ฏไพ 
